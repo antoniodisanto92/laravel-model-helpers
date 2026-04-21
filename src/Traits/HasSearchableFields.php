@@ -13,21 +13,23 @@ use Antoniodisanto92\ModelHelpers\Facades\MacroableModels;
 
 trait HasSearchableFields {
 
-    public static function bootedHasSearchableFields() : void {
+    public static function bootHasSearchableFields() : void {
         // INIT
-        $fields = with(new static())->getSearchableFields();
-        $class = static::class;
+        static::whenBooted(function () {
+            $fields = with(new static())->getSearchableFields();
+            $class = static::class;
 
-        // ADD DYNAMICS
-        foreach ($fields as $field) {
-            MacroableModels::addMacro($class, sprintf("find_by_%s", $field), function ($value) use ($class, $field) {
-                return $class::where($field, $value)->first();
-            });
-        }
+            // ADD DYNAMICS
+            foreach ($fields as $field) {
+                MacroableModels::addMacro($class, sprintf("find_by_%s", $field), function ($value) use ($class, $field) {
+                    return $class::where($field, $value)->first();
+                });
+            }
+        });
     }
 
     public function getSearchableFields() {
-        return $this->getFillable();
+        return with(new static())->getFillable();
     }
 
 }

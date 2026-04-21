@@ -17,9 +17,9 @@ trait HasRoleField {
 
     protected string $field = "role";
 
-    public static function bootedHasRoleField() : void {
+    public static function bootHasRoleField() : void {
         // INIT
-        $roles = with(new static())->getListOfRoles();
+        $roles = static::getListOfRoles();
         $class = static::class;
 
         // ADD DYNAMICS
@@ -31,7 +31,7 @@ trait HasRoleField {
         }
     }
 
-    public function getListOfRoles() : array {
+    public static function getListOfRoles() : array {
         return Role::list();
     }
 

@@ -11,6 +11,6 @@ namespace Antoniodisanto92\ModelHelpers\Interfaces;
 
 interface ListOfRolesInterface {
 
-    public function getListOfRoles() : array;
+    public static function getListOfRoles() : array;
 
 }

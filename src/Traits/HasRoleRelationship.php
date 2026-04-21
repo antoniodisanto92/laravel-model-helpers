@@ -14,14 +14,14 @@ use Antoniodisanto92\ModelHelpers\Facades\MacroableModels;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class HasRoleRelationship {
+trait HasRoleRelationship {
 
     protected string $method = "role";
     protected string $roleNameField = "name";
 
-    public static function bootedHasRoleRelationship() : void {
+    public static function bootHasRoleRelationship() : void {
         // INIT
-        $roles = with(new static())->getListOfRoles();
+        $roles = static::getListOfRoles();
         $class = static::class;
 
         // ADD DYNAMICS
