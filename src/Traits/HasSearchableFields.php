@@ -14,7 +14,7 @@ use ReflectionClass;
 
 trait HasSearchableFields {
 
-    public static function initializeHasSearchableFields() : void {
+    public static function bootHasSearchableFields() : void {
         // INIT
         $method = (new ReflectionClass(static::class))->getMethod("getSearchableFields");
         $fields = $method->invokeArgs(new static(), []);
