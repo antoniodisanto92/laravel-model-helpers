@@ -16,8 +16,7 @@ trait HasSearchableFields {
 
     public static function bootHasSearchableFields() : void {
         // INIT
-        $method = (new ReflectionClass(static::class))->getMethod("getSearchableFields");
-        $fields = $method->invoke(null);
+        $fields = static::getSearchableFields();
         $class = static::class;
 
         // ADD DYNAMICS
@@ -28,8 +27,8 @@ trait HasSearchableFields {
         }
     }
 
-    public static function getSearchableFields() {
-        return (new ReflectionClass(static::class))->getDefaultProperties()['fillable'];
+    public static function getSearchableFields(): array {
+        return array_merge(['id'], (new ReflectionClass(static::class))->getDefaultProperties()['fillable']);
     }
 
 }
