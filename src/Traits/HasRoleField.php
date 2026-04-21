@@ -17,7 +17,7 @@ trait HasRoleField {
 
     protected string $field = "role";
 
-    public static function bootHasRoleField() : void {
+    public static function bootedHasRoleField() : void {
         // INIT
         $roles = with(new static())->getListOfRoles();
         $class = static::class;

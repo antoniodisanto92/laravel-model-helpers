@@ -13,7 +13,7 @@ use Antoniodisanto92\ModelHelpers\Facades\MacroableModels;
 
 trait HasSearchableFields {
 
-    public static function bootHasSearchableFields() : void {
+    public static function bootedHasSearchableFields() : void {
         // INIT
         $fields = with(new static())->getSearchableFields();
         $class = static::class;
@@ -27,7 +27,7 @@ trait HasSearchableFields {
     }
 
     public function getSearchableFields() {
-        return with(new static())->getFillable();
+        return $this->getFillable();
     }
 
 }

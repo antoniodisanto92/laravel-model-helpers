@@ -19,7 +19,7 @@ class HasRoleRelationship {
     protected string $method = "role";
     protected string $roleNameField = "name";
 
-    public static function bootHasRoleRelationship() : void {
+    public static function bootedHasRoleRelationship() : void {
         // INIT
         $roles = with(new static())->getListOfRoles();
         $class = static::class;
