@@ -10,12 +10,14 @@
 namespace Antoniodisanto92\ModelHelpers\Traits;
 
 use Antoniodisanto92\ModelHelpers\Facades\MacroableModels;
+use ReflectionClass;
 
 trait HasSearchableFields {
 
     public static function initializeHasSearchableFields() : void {
         // INIT
-        $fields = call_user_func_array([static::class, "getSearchableFields"], []);
+        $method = (new ReflectionClass(static::class))->getMethod("getSearchableFields");
+        $fields = $method->invokeArgs(new static(), []);
         $class = static::class;
 
         // ADD DYNAMICS
